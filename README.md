@@ -1,2 +1,1 @@
-# docker-xpra
-XPRA docker base image
+# docker-xpra-html5
