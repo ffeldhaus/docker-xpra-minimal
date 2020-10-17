@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-LABEL version="0.2"
+LABEL version="0.3"
 LABEL maintainer="florian.feldhaus@gmail.com"
 
 # skip interactive configuration dialogs
@@ -9,8 +9,9 @@ ENV DEBIAN_FRONTEND noninteractive
 # add winswitch repository and install Xpra
 RUN apt-get update && \
     apt-get install -y --no-install-recommends openssl gnupg curl && \
+    UBUNTU_VERSION=$(cat /etc/os-release | grep UBUNTU_CODENAME | sed 's/UBUNTU_CODENAME=//') && \
     curl http://xpra.org/gpg.asc | apt-key add - && \
-    echo "deb http://xpra.org/ focal main" >> /etc/apt/sources.list.d/xpra.list && \
+    echo "deb http://xpra.org/ $UBUNTU_VERSION main" >> /etc/apt/sources.list.d/xpra.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends xpra && \
     apt-get remove -y --purge gnupg curl && \
