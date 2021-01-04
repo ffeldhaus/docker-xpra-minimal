@@ -4,7 +4,7 @@ LABEL version="beta"
 LABEL maintainer="florian.feldhaus@gmail.com"
 
 # skip interactive configuration dialogs
-ARG DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 # user to run xpra with
 ENV XPRA_RUNUSER xpra
