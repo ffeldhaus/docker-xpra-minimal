@@ -4,7 +4,10 @@ LABEL version="beta"
 LABEL maintainer="florian.feldhaus@gmail.com"
 
 # skip interactive configuration dialogs
-ENV DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND noninteractive
+
+# user to run xpra with
+ENV XPRA_RUNUSER xpra
 
 # add winswitch repository and install Xpra
 RUN apt-get update && \
@@ -25,11 +28,11 @@ COPY ./xpra.conf /etc/xpra/xpra.conf
 RUN chmod 644 /etc/xpra/ssl-cert.pem
 
 # add xpra user
-RUN useradd --create-home --shell /bin/bash xpra --gid xpra --uid 1000
-WORKDIR /home/xpra
+RUN useradd --create-home --shell /bin/bash $XPRA_RUNUSER --gid $XPRA_RUNUSER --uid 1000
+WORKDIR /home/$XPRA_RUNUSER
 
 # create run directory for xpra socket and set correct permissions for xpra user
-RUN mkdir -p /run/user/1000/xpra && chown -R 1000 /run/user/1000
+RUN mkdir -p /run/user/1000/$XPRA_RUNUSER && chown -R 1000 /run/user/1000
 
 # use docker-entrypoint.sh to allow passing options to xpra and start xpra from bash
 COPY docker-entrypoint.sh /docker-entrypoint.sh
