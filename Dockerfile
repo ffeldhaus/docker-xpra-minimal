@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
-LABEL version="0.3"
-LABEL maintainer="florian.feldhaus@gmail.com"
+LABEL org.opencontainers.image.url https://github.com/users/lambdalisue/packages/container/package/xpra-minimal
+LABEL org.opencontainers.image.source https://github.com/lambdalisue/docker-xpra-minimal
 
 # skip interactive configuration dialogs
 ENV DEBIAN_FRONTEND noninteractive
