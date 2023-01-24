@@ -1,3 +1,8 @@
+> **Note**
+>
+> This is a fork version that support multi-platform image mainly for Apple Silicon.
+> Visit https://github.com/ffeldhaus/docker-xpra-minimal for the original version.
+
 # Minimal docker image to run xpra
 
 This docker image provides remote access to X11 using [xpra](https://xpra.org/). This is a base image with minimal dependencies and can be used as basis for other images.
@@ -11,7 +16,8 @@ It is useful to automatically restart the container on failures using the `--res
 A container using the image can be started with:
 
 ```sh
-docker run ffeldhaus/docker-xpra-minimal
+docker run ghcr.io/lambdalisue/xpra-minimal
 ```
 
 Running the image will results in multiple warnings and error messages to be shown from xpra as xpra is trying to use a lot of recommended dependencies which are not included in this image. Also this image does not have a command such as `xterm` installed which can be run. Consider creating your own image based on this image where you can add the dependencies and programs you need.
+
